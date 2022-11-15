@@ -10,10 +10,9 @@ public class BankAccount {
     private Integer accountNumber;
     private Double balance;
 
-// making properties
+    // making properties
 
-    public BankAccount (String inputFirstName, String inputLastName, LocalDate inputDOB,
-                        Integer inputAccountNumber, Double inputBalance){
+    public BankAccount( String inputFirstName, String inputLastName,LocalDate inputDOB, Integer inputAccountNumber, Double inputBalance) {
         this.firstName = inputFirstName;
         this.lastName = inputLastName;
         this.dateOfBirth = inputDOB;
@@ -21,5 +20,4 @@ public class BankAccount {
         this.balance = inputBalance;
 
     }
-
 }
