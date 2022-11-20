@@ -6,10 +6,14 @@ import java.time.LocalDate;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
+
 class BankAccountTest {
+
+    BankAccount account1;
+
     @BeforeEach
     public void setUp() {
-        BankAccount account1 = new BankAccount("Berna", "Yasar", 1997-04-11, 12345678);
+        account1 = new BankAccount("Berna", "Yasar", 1997-04-11, 12345678);
     }
     @Test
     public void testFName(){
@@ -46,6 +50,26 @@ class BankAccountTest {
         assertThat(actualBalance).isEqualTo(expectedBalance);
     }
 
+    // deposit test
+    @Test
+    public void canDeposit(){
+        account1.deposit(100.00);
+        assertThat(account1.getBalance()).isEqualTo(100.00);
+    }
+    // withdraw test
+    @Test
+    public void canWithdraw(){
+        account1.deposit(100.00);
+        account1.withdraw(100.00);
+        assertThat(account1.getBalance()).isEqualTo(0);
+    }
 
+    // interest test
+    @Test
+    public void canPayInterest(){
+        account1.deposit(100.00);
+        account1.calculateInterest(0.10);
+        assertThat(account1.getBalance()).isEqualTo(110.00);
+    }
 
 }

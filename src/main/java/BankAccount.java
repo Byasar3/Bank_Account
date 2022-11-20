@@ -9,6 +9,8 @@ public class BankAccount {
     private Integer dateOfBirth; // = LocalDate.of(2022,04,11)
     private Integer accountNumber;
     private Double balance;
+    private String accountType;
+    private Double overdraft;
 
     // constructor:
 
@@ -62,4 +64,21 @@ public class BankAccount {
         this.balance = balance;
     }
 
+    // Methods:
+
+    // deposit method that updates the balance of bank account
+    public void deposit(Double amount){
+        this.balance += amount;
+    }
+
+    // withdraw method that updates the balance of bank account
+    public void withdraw(double amount){
+        this.balance -=amount;
+    }
+
+    // method to pay interest
+    public Double calculateInterest(Double percentage){
+        Double interestToPay = this.balance * percentage;
+        return interestToPay;
+    }
 }
