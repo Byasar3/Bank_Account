@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 public class BankAccount {
 
 // PROPERTIES:
@@ -14,13 +12,14 @@ public class BankAccount {
 
     // constructor:
 
-    public BankAccount(String inputFirstName, String inputLastName, Integer inputDOB, Integer inputAccountNumber) {
+    public BankAccount(String inputFirstName, String inputLastName, Integer inputDOB, Integer inputAccountNumber, String accountType, Double overdraft) {
         this.firstName = inputFirstName;
         this.lastName = inputLastName;
         this.dateOfBirth = inputDOB;
         this.accountNumber = inputAccountNumber;
         this.balance = 00.00;
-
+        this.accountType = accountType;
+        this.overdraft = overdraft;
     }
 
     // Getters and setters for properties:
@@ -64,6 +63,22 @@ public class BankAccount {
         this.balance = balance;
     }
 
+    public String getAccountType(){
+        return this.accountType;
+    }
+
+    public void setAccountType(String accountType){
+        this.accountType = accountType;
+    }
+
+    public Double getOverdraft(){
+        return this.overdraft;
+    }
+
+    public void setOverdraft(Double overdraft){
+        this.overdraft = overdraft;
+    }
+
     // Methods:
 
     // deposit method that updates the balance of bank account
@@ -73,12 +88,23 @@ public class BankAccount {
 
     // withdraw method that updates the balance of bank account
     public void withdraw(double amount){
-        this.balance -=amount;
+        // it will only withdraw if amount withdrawn doesn't put in account overdraft
+        if ((this.balance - amount) >= overdraft){
+        this.balance -=amount;}
     }
 
     // method to pay interest
     public Double calculateInterest(Double percentage){
         Double interestToPay = this.balance * percentage;
         return interestToPay;
+    }
+
+    public void payInterest(double savingsAccountInterest, double currentAccountInterest){
+        if(accountType.equals("savings")){
+            this.balance += calculateInterest(savingsAccountInterest);
+        } else if (accountType.equals("current")){
+            this.balance += calculateInterest(currentAccountInterest);
+        }
+
     }
 }
